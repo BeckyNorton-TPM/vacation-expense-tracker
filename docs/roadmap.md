@@ -26,5 +26,27 @@ React form for entry, list view, category subtotal display
 
 \## M4: Deploy
 
-Host backend + frontend; add live link to README
+Host backend + frontend; add live link to README. This is the one-time
+
+hosting setup — most platforms auto-redeploy on every future push to
+
+main, so later phases won't need to repeat this setup.
+
+
+
+\## M5: Vacation trips
+
+Add a Vacation/Trip entity with a title; associate each expense with
+
+a trip so multiple vacations can be tracked separately. Redeploy
+
+(just a push — hosting is already set up).
+
+
+
+\## M6: Quick currency check
+
+Add a standalone tool: enter an amount + currency, see the USD
+
+equivalent instantly, with no expense saved. Redeploy.
 

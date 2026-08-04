@@ -32,6 +32,14 @@ error-prone when done manually.
 
 \- View/filter expense list
 
+\- Title and save expenses under a named vacation/trip, so multiple
+
+&#x20; trips can be tracked separately over time
+
+\- Quick currency check: let the user enter an amount and currency
+
+&#x20; and see the USD equivalent, without creating a saved expense entry
+
 
 
 \## Non-goals (v1)
