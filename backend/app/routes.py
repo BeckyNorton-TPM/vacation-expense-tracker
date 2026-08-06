@@ -1,6 +1,7 @@
 from datetime import datetime
 from decimal import Decimal, InvalidOperation
 
+import requests
 from flask import Blueprint, jsonify, request
 
 from .extensions import db
@@ -14,8 +15,9 @@ REQUIRED_FIELDS = [
     "category",
     "local_currency",
     "local_amount",
-    "exchange_rate",
 ]
+
+EXCHANGE_RATE_API_URL = "https://open.er-api.com/v6/latest/{base}"
 
 
 def _parse_decimal(value, field_name, errors):
@@ -25,6 +27,36 @@ def _parse_decimal(value, field_name, errors):
         errors.append(f"{field_name} must be a number")
         return None
     return parsed
+
+
+def _fetch_exchange_rate(local_currency):
+    """Fetch the local_currency -> USD rate. Returns (rate, error_message, status_code)."""
+    try:
+        response = requests.get(
+            EXCHANGE_RATE_API_URL.format(base=local_currency), timeout=5
+        )
+    except requests.RequestException:
+        return None, "Could not reach the currency exchange service", 502
+
+    if response.status_code != 200:
+        return None, "Currency exchange service returned an error", 502
+
+    try:
+        data = response.json()
+    except ValueError:
+        return None, "Currency exchange service returned an invalid response", 502
+
+    if data.get("result") != "success":
+        return None, f"Invalid or unsupported currency code: {local_currency}", 400
+
+    rate = data.get("rates", {}).get("USD")
+    if rate is None:
+        return None, "Currency exchange service did not return a USD rate", 502
+
+    try:
+        return Decimal(str(rate)), None, None
+    except (InvalidOperation, TypeError, ValueError):
+        return None, "Currency exchange service returned an invalid rate", 502
 
 
 @expenses_bp.post("/expenses")
@@ -49,18 +81,17 @@ def create_expense():
         if local_amount is not None and local_amount <= 0:
             errors.append("local_amount must be greater than 0")
 
-    exchange_rate = None
-    if payload.get("exchange_rate") is not None:
-        exchange_rate = _parse_decimal(payload["exchange_rate"], "exchange_rate", errors)
-        if exchange_rate is not None and exchange_rate <= 0:
-            errors.append("exchange_rate must be greater than 0")
-
     local_currency = payload.get("local_currency")
-    if local_currency and len(local_currency) != 3:
+    if local_currency and (len(local_currency) != 3 or not local_currency.isalpha()):
         errors.append("local_currency must be a 3-letter currency code")
 
     if errors:
         return jsonify({"errors": errors}), 400
+
+    local_currency = local_currency.upper()
+    exchange_rate, error, status_code = _fetch_exchange_rate(local_currency)
+    if error:
+        return jsonify({"errors": [error]}), status_code
 
     usd_amount = (local_amount * exchange_rate).quantize(Decimal("0.01"))
 
@@ -69,7 +100,7 @@ def create_expense():
         business_name=payload["business_name"],
         description=payload.get("description", ""),
         category=payload["category"],
-        local_currency=local_currency.upper(),
+        local_currency=local_currency,
         local_amount=local_amount,
         exchange_rate=exchange_rate,
         usd_amount=usd_amount,
