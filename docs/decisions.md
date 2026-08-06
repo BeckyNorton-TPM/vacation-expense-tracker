@@ -26,3 +26,29 @@ Using Claude Code for implementation, with PRD, roadmap, and GitHub
 
 Issues driving scope and direction.
 
+
+
+\## Testing: manual first, automated as its own phase
+
+Chose to manually test each phase as it was built (fast feedback
+
+during early iteration), then add an automated pytest suite as a
+
+dedicated milestone (M7) once the feature set stabilized — balancing
+
+build speed early on with regression protection long-term.
+
+
+
+\## Interim "Clear all expenses" tool
+
+Added a temporary clear-all-expenses button (with confirm-before-delete)
+
+during M3 testing, ahead of the roadmap. Needed a way to reset test
+
+data between manual test runs before M5 introduces proper per-vacation
+
+separation — expected to become unnecessary once trips can be selected
+
+individually.
+
