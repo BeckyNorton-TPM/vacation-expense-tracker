@@ -117,6 +117,13 @@ def list_expenses():
     return jsonify([e.to_dict() for e in expenses])
 
 
+@expenses_bp.delete("/expenses")
+def clear_expenses():
+    Expense.query.delete()
+    db.session.commit()
+    return "", 204
+
+
 @expenses_bp.get("/expenses/totals")
 def expense_totals():
     expenses = Expense.query.all()
