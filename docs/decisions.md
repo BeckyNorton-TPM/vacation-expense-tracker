@@ -52,3 +52,21 @@ separation — expected to become unnecessary once trips can be selected
 
 individually.
 
+
+
+\## Multi-user support: deferred, not dropped
+
+Considered adding multi-user separation (so different people could use
+
+a shared deployment without seeing each other's data) after M4 went
+
+live. Deferred intentionally — this is a portfolio project, and
+
+multi-user auth was explicitly scoped out of v1 in the PRD's non-goals.
+
+If this became a real product used by others, the path forward would
+
+likely be lightweight workspace-scoping first (a shareable code with
+
+no full auth), with real user accounts as a later step if warranted.
+
