@@ -1,4 +1,4 @@
-\# Vacation Expense Tracker
+# Vacation Expense Tracker
 
 
 
@@ -12,7 +12,7 @@ trip and a quick currency-check tool for on-the-spot conversions.
 
 
 
-\## Why I built this
+## Why I built this
 
 Built to demonstrate TPM skills — scoping, planning, and execution —
 
@@ -20,33 +20,33 @@ on a real, working technical project.
 
 
 
-\## Docs
+## Docs
 
-\- \[PRD](docs/prd.md)
+- [PRD](docs/prd.md)
 
-\- \[Roadmap](docs/roadmap.md)
+- [Roadmap](docs/roadmap.md)
 
-\- \[Decisions log](docs/decisions.md)
+- [Decisions log](docs/decisions.md)
 
 
 
-\## Stack
+## Stack
 
 Flask · SQLite · React · Live currency exchange API · Claude Code
 
 
 
-\## Setup
+## Setup
 
-1\. Clone the repo
+1. Clone the repo
 
-2\. Backend: `cd backend \&\& pip install -r requirements.txt \&\& python run.py`
+2. Backend: `cd backend \&\& pip install -r requirements.txt \&\& python run.py`
 
-3\. Frontend: `cd frontend \&\& npm install \&\& npm run dev`
+3. Frontend: `cd frontend \&\& npm install \&\& npm run dev`
 
 
 
-\## Live demo
+## Live demo
 
 Frontend: https://vacation-expense-tracker.vercel.app
 
