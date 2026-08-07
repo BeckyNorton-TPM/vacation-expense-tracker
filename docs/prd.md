@@ -1,8 +1,8 @@
-\# PRD: Vacation Expense Tracker
+# PRD: Vacation Expense Tracker
 
 
 
-\## Problem
+## Problem
 
 Tracking vacation expenses across multiple currencies is tedious and
 
@@ -10,7 +10,7 @@ error-prone when done manually.
 
 
 
-\## Users
+## Users
 
 \- Primary: me, solo traveler
 
@@ -18,7 +18,7 @@ error-prone when done manually.
 
 
 
-\## Requirements
+## Requirements
 
 \- Log an expense: date, business name, description, category,
 
@@ -42,7 +42,7 @@ error-prone when done manually.
 
 
 
-\## Non-goals (v1)
+## Non-goals (v1)
 
 \- Multi-user auth
 
@@ -52,7 +52,7 @@ error-prone when done manually.
 
 
 
-\## Success criteria
+## Success criteria
 
 \- Can log an expense in under 15 seconds
 

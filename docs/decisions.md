@@ -1,8 +1,8 @@
-\# Decisions Log
+# Decisions Log
 
 
 
-\## Stack: Flask + React + SQLite
+## Stack: Flask + React + SQLite
 
 Chose Flask for a lightweight Python backend, React for a
 
@@ -12,7 +12,7 @@ appropriate for single-user scale.
 
 
 
-\## Currency conversion: live API vs manual entry
+## Currency conversion: live API vs manual entry
 
 Chose live API lookup at time of entry to reduce manual error and
 
@@ -20,7 +20,7 @@ keep the workflow fast while traveling.
 
 
 
-\## Build approach: Claude Code
+## Build approach: Claude Code
 
 Using Claude Code for implementation, with PRD, roadmap, and GitHub
 
@@ -28,7 +28,7 @@ Issues driving scope and direction.
 
 
 
-\## Testing: manual first, automated as its own phase
+## Testing: manual first, automated as its own phase
 
 Chose to manually test each phase as it was built (fast feedback
 
@@ -40,7 +40,7 @@ build speed early on with regression protection long-term.
 
 
 
-\## Interim "Clear all expenses" tool
+## Interim "Clear all expenses" tool
 
 Added a temporary clear-all-expenses button (with confirm-before-delete)
 
@@ -54,7 +54,7 @@ individually.
 
 
 
-\## Multi-user support: deferred, not dropped
+## Multi-user support: deferred, not dropped
 
 Considered adding multi-user separation (so different people could use
 
